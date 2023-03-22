@@ -1,0 +1,33 @@
+Name: user.rpc
+ListenOn: 0.0.0.0:9000
+Etcd:
+  Hosts:
+  - 192.168.88.128:2379
+  Key: user.rpc
+Mysql:
+  DataSource: root:123456@tcp(192.168.88.128:3306)/mall?charset=utf8mb4&parseTime=true&loc=Asia%2FShanghai
+
+CacheRedis:
+  - Host: 192.168.88.128:6379
+    Type: node
+
+Salt: HWVOFkGgPTryzICwd7qnJaZR9KQ2i8xe
+Auth: true               # 是否开启 Auth 验证
+StrictControl: true      # 是否开启严格模式
+Redis:                   # 指定 Redis 服务
+  Key: rpc:auth:user     # 指定 Key 应为 hash 类型
+  Host: 192.168.88.128:6379
+  Type: node
+
+# 相当于白名单, 记得使用 hmset rpc:auth:user userapi [token值]
+
+Telemetry:
+  Name: user.rpc
+  Endpoint: http://192.168.88.128:14268/api/traces
+  Sampler: 1.0
+  Batcher: jaeger
+
+Prometheus:
+  Host: 192.168.88.128
+  Port: 9090
+  Path: /metrics

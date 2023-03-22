@@ -1,0 +1,25 @@
+Name: product.rpc
+ListenOn: 0.0.0.0:8000
+Etcd:
+  Hosts:
+  - 192.168.88.128:2379
+  Key: product.rpc
+
+Mysql:
+  DataSource: root:123456@tcp(192.168.88.128:3306)/mall?charset=utf8mb4&parseTime=true&loc=Asia%2FShanghai
+
+CacheRedis:
+  - Host: 192.168.88.128:6379
+    Type: node # node可以不写，可以设为cluster
+
+
+Telemetry:
+  Name: product.rpc
+  Endpoint: http://192.168.88.128:14268/api/traces
+  Sampler: 1.0
+  Batcher: jaeger
+
+Prometheus:
+  Host: 192.168.88.128
+  Port: 9091
+  Path: /metrics
