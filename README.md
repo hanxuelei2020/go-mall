@@ -13,15 +13,18 @@
 
 #### 安装教程
 
-1.  xxxx
-2.  xxxx
-3.  xxxx
+1.  首先进入docker-compose 中执行命令
+```shell
+docker-compose up -d
+```
+2.  每一个 api 和 rpc 文件中都有一个 Dockerfile
+```docker build ```
 
-#### 使用说明
+#### 使用的技术
 
-1.  xxxx
-2.  xxxx
-3.  xxxx
+1.  Redis
+2.  Mysql
+3.  go-zero
 
 #### 参与贡献
 
