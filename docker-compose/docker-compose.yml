@@ -158,3 +158,18 @@ services:
     networks:
       - backend
     restart: always
+
+  rabbitmq:
+    restart: always
+    image: rabbitmq:management
+    ports:
+      - "${RABBITMQ_AMQP_PORT}:5672"
+      - "${RABBITMQ_WEB_PORT}:15672"
+    networks:
+      - backend
+    environment:
+      - TZ=${TZ}
+      - RABBITMQ_DEFAULT_USER=${RABBITMQ_DEFAULT_USER}
+      - RABBITMQ_DEFAULT_PASS=${RABBITMQ_DEFAULT_PASS}
+    volumes:
+      - ./rabbitmq/data:/var/lib/rabbitmq
